@@ -62,34 +62,37 @@ st.markdown("""
 
 
 /* =========================
-   TOP METRIC CARDS
+   TOP KPI CARDS
    ========================= */
 
-[data-testid="stMetric"] {
-    background: #ffffff !important;
-    border: 1px solid #e6edf3 !important;
-    border-radius: 14px !important;
-
-    /* Keep cards compact but allow label + value */
-    padding: 0.65rem 0.75rem !important;
-
-    min-height: 78px !important;
-    box-sizing: border-box !important;
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid #e6edf3;
+    border-radius: 14px;
+    height: 88px;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
 }
 
-/* Metric label */
-[data-testid="stMetricLabel"] {
-    color: #111111 !important;
-    font-size: 0.82rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.15rem !important;
+.kpi-label {
+    color: #111111;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 7px;
+    white-space: nowrap;
 }
 
-/* Metric value */
-[data-testid="stMetricValue"] {
-    color: #111111 !important;
-    font-size: 1.45rem !important;
-    line-height: 1.15 !important;
+.kpi-value {
+    color: #111111;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
 
@@ -169,14 +172,64 @@ importance = feature_importance(surface)
 confidence=max(50,min(99,100-unc.mean()*35))
 
 # ---------------- KPI strip ----------------
-a,b,c,d,e=st.columns(5)
-a.metric("🌡️ Thermocline",f"{thermocline:.1f} m")
-b.metric("🔥 OHC proxy",f"{ohcc:,.0f} MJ/m²")
-c.metric("📏 Uncertainty",f"±{unc.mean():.2f} °C")
-d.metric("⚛️ Physics",f"{physics['score']:.1f}/100")
-e.metric("🎯 Confidence",f"{confidence:.0f}%")
+a, b, c, d, e = st.columns(5)
 
-st.caption("Interactive emulator/demo. Real GLORYS training and independent INCOIS/Gridded ARGO validation are required for scientific results.")
+with a:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">🌡️ Thermocline</div>
+            <div class="kpi-value">{thermocline:.1f} m</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with b:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">🔥 OHC proxy</div>
+            <div class="kpi-value">{ohcc:,.0f} MJ/m²</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with c:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">📏 Uncertainty</div>
+            <div class="kpi-value">±{unc.mean():.2f} °C</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with d:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">⚛️ Physics</div>
+            <div class="kpi-value">{physics['score']:.1f}/100</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with e:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">🎯 Confidence</div>
+            <div class="kpi-value">{confidence:.0f}%</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 
 # ---------------- Tabs ----------------
 t1,t2,t3,t4,t5,t6,t7 = st.tabs(["🌡️ Profile Explorer","🗺️ Ocean Map","🧠 Attention","⚛️ Physics","🎯 ARGO","🔬 Compare Regions","📦 Export"])
