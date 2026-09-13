@@ -29,18 +29,48 @@ PRESETS = {
 
 st.markdown("""
 <style>
-.main{background:#f6f9fc}.block-container{padding-top:1rem}
-.hero{padding:1.3rem 1.5rem;border-radius:20px;background:linear-gradient(135deg,#063970,#0b7285);color:white;margin-bottom:1rem}
-.hero h1{margin:0 0 .3rem 0}.hero p{margin:.2rem 0;opacity:.93}
-[data-testid="stMetric"]{background:white;border:1px solid #e6edf3;border-radius:14px;padding:.7rem}
-.card{background:white;border:1px solid #e6edf3;border-radius:14px;padding:1rem}
-</style>
-""", unsafe_allow_html=True)
+.main{background:#f6f9fc}
+.block-container{padding-top:1rem}
 
-st.markdown("""
-<div class="hero"><h1>🌊 OceanEmbed-NIO</h1>
-<p><b>Interactive satellite-to-subsurface temperature reconstruction prototype</b></p>
-<p>North Indian Ocean • 5°N–30°N • 45°E–105°E • 15 standard depths</p></div>
+.hero{
+    padding:1.3rem 1.5rem;
+    border-radius:20px;
+    background:linear-gradient(135deg,#063970,#0b7285);
+    color:white;
+    margin-bottom:1rem
+}
+
+.hero h1{margin:0 0 .3rem 0}
+.hero p{margin:.2rem 0;opacity:.93}
+
+/* KPI metric cards */
+[data-testid="stMetric"]{
+    background:white;
+    border:1px solid #e6edf3;
+    border-radius:14px;
+    padding:.7rem;
+    color:#000000 !important;
+}
+
+/* KPI label */
+[data-testid="stMetricLabel"]{
+    color:#000000 !important;
+}
+
+/* KPI value */
+[data-testid="stMetricValue"]{
+    color:#000000 !important;
+}
+
+/* Other cards */
+.card{
+    background:white;
+    border:1px solid #e6edf3;
+    border-radius:14px;
+    padding:1rem;
+    color:#000000 !important;
+}
+</style>
 """, unsafe_allow_html=True)
 
 # ---------------- Sidebar ----------------
