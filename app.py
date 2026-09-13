@@ -29,9 +29,15 @@ PRESETS = {
 
 st.markdown("""
 <style>
-.main{background:#f6f9fc}
-.block-container{padding-top:1rem}
+.main{
+    background:#f6f9fc
+}
 
+.block-container{
+    padding-top:1rem
+}
+
+/* Hero */
 .hero{
     padding:1.3rem 1.5rem;
     border-radius:20px;
@@ -40,26 +46,35 @@ st.markdown("""
     margin-bottom:1rem
 }
 
-.hero h1{margin:0 0 .3rem 0}
-.hero p{margin:.2rem 0;opacity:.93}
+.hero h1{
+    margin:0 0 .3rem 0
+}
 
-/* KPI metric cards */
+.hero p{
+    margin:.2rem 0;
+    opacity:.93
+}
+
+/* Compact metric cards */
 [data-testid="stMetric"]{
     background:white;
     border:1px solid #e6edf3;
     border-radius:14px;
-    padding:.7rem;
+    padding:0.5rem 0.7rem;
     color:#000000 !important;
 }
 
-/* KPI label */
+/* Metric label */
 [data-testid="stMetricLabel"]{
     color:#000000 !important;
+    font-size:0.85rem !important;
 }
 
-/* KPI value */
+/* Metric value */
 [data-testid="stMetricValue"]{
     color:#000000 !important;
+    font-size:1.5rem !important;
+    line-height:1.1 !important;
 }
 
 /* Other cards */
