@@ -29,62 +29,95 @@ PRESETS = {
 
 st.markdown("""
 <style>
-.main{
-    background:#f6f9fc
+
+/* Main background */
+.main {
+    background: #0b0f14;
 }
 
-.block-container{
-    padding-top:1rem
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
-/* Hero */
-.hero{
-    padding:1.3rem 1.5rem;
-    border-radius:20px;
-    background:linear-gradient(135deg,#063970,#0b7285);
-    color:white;
-    margin-bottom:1rem
+/* =========================
+   HERO
+   ========================= */
+.hero {
+    padding: 1.3rem 1.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #063970, #0b7285);
+    color: white;
+    margin-bottom: 1rem;
 }
 
-.hero h1{
-    margin:0 0 .3rem 0
+.hero h1 {
+    margin: 0 0 .3rem 0;
 }
 
-.hero p{
-    margin:.2rem 0;
-    opacity:.93
+.hero p {
+    margin: .2rem 0;
+    opacity: .93;
 }
 
-/* Compact metric cards */
-[data-testid="stMetric"]{
-    background:white;
-    border:1px solid #e6edf3;
-    border-radius:14px;
-    padding:0.5rem 0.7rem;
-    color:#000000 !important;
+
+/* =========================
+   TOP METRIC CARDS
+   ========================= */
+
+[data-testid="stMetric"] {
+    background: #ffffff !important;
+    border: 1px solid #e6edf3 !important;
+    border-radius: 14px !important;
+
+    /* Keep cards compact but allow label + value */
+    padding: 0.65rem 0.75rem !important;
+
+    min-height: 78px !important;
+    box-sizing: border-box !important;
 }
 
 /* Metric label */
-[data-testid="stMetricLabel"]{
-    color:#000000 !important;
-    font-size:0.85rem !important;
+[data-testid="stMetricLabel"] {
+    color: #111111 !important;
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.15rem !important;
 }
 
 /* Metric value */
-[data-testid="stMetricValue"]{
-    color:#000000 !important;
-    font-size:1.5rem !important;
-    line-height:1.1 !important;
+[data-testid="stMetricValue"] {
+    color: #111111 !important;
+    font-size: 1.45rem !important;
+    line-height: 1.15 !important;
 }
 
-/* Other cards */
-.card{
-    background:white;
-    border:1px solid #e6edf3;
-    border-radius:14px;
-    padding:1rem;
-    color:#000000 !important;
+
+/* =========================
+   OTHER WHITE CARDS
+   ========================= */
+
+.card {
+    background: white !important;
+    border: 1px solid #e6edf3 !important;
+    border-radius: 14px !important;
+    padding: 0.8rem !important;
+    color: #111111 !important;
 }
+
+
+/* =========================
+   GENERAL TEXT
+   ========================= */
+
+h1, h2, h3 {
+    color: white;
+}
+
+p, label {
+    color: #eeeeee;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
