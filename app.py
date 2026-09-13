@@ -62,9 +62,18 @@ st.markdown("""
 # ---------- Sidebar ----------
 st.sidebar.header("⚙️ Experiment controls")
 
-date = st.sidebar.date_input("Analysis date", value=pd.Timestamp("2026-09-12").date())
-region_name = st.sidebar.selectbox("Region", list(REGIONS.keys()), index=0)
-region = REGIONS[region_name]
+date = st.sidebar.date_input(
+    "Analysis date",
+    value=pd.Timestamp("2026-09-12").date()
+)
+
+region_name = st.sidebar.selectbox(
+    "Region",
+    list(REGIONS.keys()),
+    index=0
+)
+
+region = region_name
 
 st.sidebar.subheader("Surface inputs")
 sst = st.sidebar.slider("SST (°C)", 18.0, 34.0, 28.0, 0.1)
