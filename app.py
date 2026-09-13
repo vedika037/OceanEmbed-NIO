@@ -95,15 +95,93 @@ physics = physics_diagnostics(DEPTHS,profile,sst)
 importance = feature_importance(surface)
 confidence=max(50,min(99,100-unc.mean()*35))
 
-# ---------------- KPI strip ----------------
-a,b,c,d,e=st.columns(5)
-with a: metric_card("Thermocline", f"{thermocline:.1f} m", "🌡️")
-with b: metric_card("OHC proxy", f"{ohcc:,.0f} MJ/m²", "🔥")
-with c: metric_card("Uncertainty", f"±{unc.mean():.2f} °C", "📏")
-with d: metric_card("Physics", f"{physics['score']:.1f}/100", "⚛️")
-with e: metric_card("Confidence", f"{confidence:.0f}%", "🎯")
+# =========================
+# TOP KPI CARDS
+# =========================
 
-st.caption("Interactive emulator/demo. Real GLORYS training and independent INCOIS/Gridded ARGO validation are required for scientific results.")
+k1, k2, k3, k4, k5 = st.columns(5, gap="small")
+
+with k1:
+    st.markdown(
+        f"""
+        <div style="background:#ffffff;border-radius:14px;padding:10px 14px;
+        height:78px;border:1px solid #dfe3e8;box-sizing:border-box;">
+            <div style="color:#111111;font-size:13px;font-weight:600;">
+                🌡️ Thermocline
+            </div>
+            <div style="color:#111111;font-size:22px;font-weight:700;">
+                {thermocline:.1f} m
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with k2:
+    st.markdown(
+        f"""
+        <div style="background:#ffffff;border-radius:14px;padding:10px 14px;
+        height:78px;border:1px solid #dfe3e8;box-sizing:border-box;">
+            <div style="color:#111111;font-size:13px;font-weight:600;">
+                🔥 OHC proxy
+            </div>
+            <div style="color:#111111;font-size:22px;font-weight:700;">
+                {ohcc:,.0f} MJ/m²
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with k3:
+    st.markdown(
+        f"""
+        <div style="background:#ffffff;border-radius:14px;padding:10px 14px;
+        height:78px;border:1px solid #dfe3e8;box-sizing:border-box;">
+            <div style="color:#111111;font-size:13px;font-weight:600;">
+                📏 Uncertainty
+            </div>
+            <div style="color:#111111;font-size:22px;font-weight:700;">
+                ±{float(unc.mean()):.2f} °C
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with k4:
+    st.markdown(
+        f"""
+        <div style="background:#ffffff;border-radius:14px;padding:10px 14px;
+        height:78px;border:1px solid #dfe3e8;box-sizing:border-box;">
+            <div style="color:#111111;font-size:13px;font-weight:600;">
+                ⚛️ Physics
+            </div>
+            <div style="color:#111111;font-size:22px;font-weight:700;">
+                {physics["score"]:.1f}/100
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with k5:
+    st.markdown(
+        f"""
+        <div style="background:#ffffff;border-radius:14px;padding:10px 14px;
+        height:78px;border:1px solid #dfe3e8;box-sizing:border-box;">
+            <div style="color:#111111;font-size:13px;font-weight:600;">
+                🎯 Confidence
+            </div>
+            <div style="color:#111111;font-size:22px;font-weight:700;">
+                {confidence:.0f}%
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 
 # ---------------- Tabs ----------------
 t1,t2,t3,t4,t5,t6,t7 = st.tabs(["🌡️ Profile Explorer","🗺️ Ocean Map","🧠 Attention","⚛️ Physics","🎯 ARGO","🔬 Compare Regions","📦 Export"])
