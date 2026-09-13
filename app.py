@@ -29,100 +29,24 @@ PRESETS = {
 
 st.markdown("""
 <style>
-
-/* Main background */
-.main {
-    background: #0b0f14;
-}
-
-.block-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-/* =========================
-   HERO
-   ========================= */
-.hero {
-    padding: 1.3rem 1.5rem;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #063970, #0b7285);
-    color: white;
-    margin-bottom: 1rem;
-}
-
-.hero h1 {
-    margin: 0 0 .3rem 0;
-}
-
-.hero p {
-    margin: .2rem 0;
-    opacity: .93;
-}
-
-
-/* =========================
-   TOP KPI CARDS
-   ========================= */
-
-.kpi-card {
-    background: #ffffff;
-    border: 1px solid #e6edf3;
-    border-radius: 14px;
-    height: 88px;
-    padding: 12px 14px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.kpi-label {
-    color: #111111;
-    font-size: 0.82rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 7px;
-    white-space: nowrap;
-}
-
-.kpi-value {
-    color: #111111;
-    font-size: 1.55rem;
-    font-weight: 700;
-    line-height: 1.1;
-    white-space: nowrap;
-}
-
-
-/* =========================
-   OTHER WHITE CARDS
-   ========================= */
-
-.card {
-    background: white !important;
-    border: 1px solid #e6edf3 !important;
-    border-radius: 14px !important;
-    padding: 0.8rem !important;
-    color: #111111 !important;
-}
-
-
-/* =========================
-   GENERAL TEXT
-   ========================= */
-
-h1, h2, h3 {
-    color: white;
-}
-
-p, label {
-    color: #eeeeee;
-}
-
+.main { background: #0b0f14; }
+.block-container { padding-top: 1rem; padding-bottom: 1rem; }
+.hero { padding: 1.3rem 1.5rem; border-radius: 20px; background: linear-gradient(135deg, #063970, #0b7285); color: white; margin-bottom: 1rem; }
+.hero h1 { margin: 0 0 .3rem 0; }
+.hero p { margin: .2rem 0; opacity: .93; }
+.card { background: #ffffff !important; border: 1px solid #e6edf3 !important; border-radius: 14px !important; padding: 0.8rem !important; color: #111111 !important; }
+h1, h2, h3 { color: white; }
+p, label { color: #eeeeee; }
 </style>
 """, unsafe_allow_html=True)
+
+def metric_card(label, value, icon=""):
+    st.html(f"""
+    <div style="width:100%;height:82px;box-sizing:border-box;background:#ffffff;border:1px solid #dfe6ed;border-radius:14px;padding:10px 12px;margin:0;overflow:hidden;font-family:Arial,sans-serif;">
+        <div style="color:#111111;font-size:13px;font-weight:600;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 0 5px 0;">{icon} {label}</div>
+        <div style="color:#111111;font-size:22px;font-weight:700;line-height:26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;">{value}</div>
+    </div>
+    """)
 
 # ---------------- Sidebar ----------------
 st.sidebar.header("⚙️ Experiment controls")
@@ -172,64 +96,14 @@ importance = feature_importance(surface)
 confidence=max(50,min(99,100-unc.mean()*35))
 
 # ---------------- KPI strip ----------------
-a, b, c, d, e = st.columns(5)
+a,b,c,d,e=st.columns(5)
+with a: metric_card("Thermocline", f"{thermocline:.1f} m", "🌡️")
+with b: metric_card("OHC proxy", f"{ohcc:,.0f} MJ/m²", "🔥")
+with c: metric_card("Uncertainty", f"±{unc.mean():.2f} °C", "📏")
+with d: metric_card("Physics", f"{physics['score']:.1f}/100", "⚛️")
+with e: metric_card("Confidence", f"{confidence:.0f}%", "🎯")
 
-with a:
-    st.markdown(
-        f"""
-        <div class="kpi-card">
-            <div class="kpi-label">🌡️ Thermocline</div>
-            <div class="kpi-value">{thermocline:.1f} m</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with b:
-    st.markdown(
-        f"""
-        <div class="kpi-card">
-            <div class="kpi-label">🔥 OHC proxy</div>
-            <div class="kpi-value">{ohcc:,.0f} MJ/m²</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with c:
-    st.markdown(
-        f"""
-        <div class="kpi-card">
-            <div class="kpi-label">📏 Uncertainty</div>
-            <div class="kpi-value">±{unc.mean():.2f} °C</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with d:
-    st.markdown(
-        f"""
-        <div class="kpi-card">
-            <div class="kpi-label">⚛️ Physics</div>
-            <div class="kpi-value">{physics['score']:.1f}/100</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with e:
-    st.markdown(
-        f"""
-        <div class="kpi-card">
-            <div class="kpi-label">🎯 Confidence</div>
-            <div class="kpi-value">{confidence:.0f}%</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
+st.caption("Interactive emulator/demo. Real GLORYS training and independent INCOIS/Gridded ARGO validation are required for scientific results.")
 
 # ---------------- Tabs ----------------
 t1,t2,t3,t4,t5,t6,t7 = st.tabs(["🌡️ Profile Explorer","🗺️ Ocean Map","🧠 Attention","⚛️ Physics","🎯 ARGO","🔬 Compare Regions","📦 Export"])
@@ -238,7 +112,10 @@ with t1:
     st.subheader("Explore the reconstructed profile")
     depth=st.select_slider("Choose depth",options=list(DEPTHS),value=100)
     temp=float(np.interp(depth,DEPTHS,profile)); sigma=float(np.interp(depth,DEPTHS,unc))
-    x,y,z=st.columns(3); x.metric("Depth",f"{depth:.0f} m"); y.metric("Temperature",f"{temp:.2f} °C"); z.metric("Uncertainty",f"±{sigma:.2f} °C")
+    x,y,z=st.columns(3)
+    with x: metric_card("Depth", f"{depth:.0f} m")
+    with y: metric_card("Temperature", f"{temp:.2f} °C")
+    with z: metric_card("Uncertainty", f"±{sigma:.2f} °C")
     fig=go.Figure()
     if show_unc:
         fig.add_trace(go.Scatter(x=profile+unc,y=DEPTHS,line=dict(width=0),showlegend=False,hoverinfo="skip"))
@@ -270,12 +147,16 @@ with t3:
     st.plotly_chart(fig,use_container_width=True)
     feat=st.selectbox("Inspect feature",list(importance.Feature))
     val=float(importance.loc[importance.Feature==feat,"Importance"].iloc[0])
-    st.metric(f"{feat} contribution",f"{val*100:.1f}%")
+    metric_card(f"{feat} contribution", f"{val*100:.1f}%", "🧠")
     st.markdown('<div class="card"><b>Production:</b> replace this proxy with learned CBAM maps, Transformer attention and SHAP on real satellite data.</div>',unsafe_allow_html=True)
 
 with t4:
     st.subheader("Physics-aware diagnostics")
-    p1,p2,p3,p4=st.columns(4); p1.metric("Surface consistency",f"{physics['surface_consistency']:.1f}%"); p2.metric("Smoothness",f"{physics['smoothness']:.1f}%"); p3.metric("Gradient realism",f"{physics['gradient_realism']:.1f}%"); p4.metric("Overall",f"{physics['score']:.1f}/100")
+    p1,p2,p3,p4=st.columns(4)
+    with p1: metric_card("Surface consistency", f"{physics['surface_consistency']:.1f}%")
+    with p2: metric_card("Smoothness", f"{physics['smoothness']:.1f}%")
+    with p3: metric_card("Gradient realism", f"{physics['gradient_realism']:.1f}%")
+    with p4: metric_card("Overall", f"{physics['score']:.1f}/100")
     grad=np.gradient(profile,DEPTHS)
     fig=go.Figure(go.Scatter(x=grad,y=DEPTHS,mode="lines+markers",name="dT/dz")); fig.add_hline(y=thermocline,line_dash="dash",annotation_text="Thermocline"); fig.update_yaxes(autorange="reversed",title="Depth (m)"); fig.update_xaxes(title="dT/dz (°C/m)"); fig.update_layout(height=500)
     st.plotly_chart(fig,use_container_width=True)
@@ -284,7 +165,11 @@ with t4:
 with t5:
     st.subheader("ARGO-style validation")
     argo=synthetic_argo_validation(profile,uncertainty=unc,seed=42)
-    a,b,c,d=st.columns(4); a.metric("RMSE",f"{argo['rmse']:.2f} °C"); b.metric("MAE",f"{argo['mae']:.2f} °C"); c.metric("R²",f"{argo['r2']:.4f}"); d.metric("Bias",f"{argo['bias']:+.2f} °C")
+    a,b,c,d=st.columns(4)
+    with a: metric_card("RMSE", f"{argo['rmse']:.2f} °C")
+    with b: metric_card("MAE", f"{argo['mae']:.2f} °C")
+    with c: metric_card("R²", f"{argo['r2']:.4f}")
+    with d: metric_card("Bias", f"{argo['bias']:+.2f} °C")
     fig=go.Figure(go.Scatter(x=argo["observed"],y=argo["predicted"],mode="markers",customdata=DEPTHS,hovertemplate="Depth %{customdata:.0f}m<br>Ref %{x:.2f}°C<br>Pred %{y:.2f}°C<extra></extra>")); mn=min(argo["observed"].min(),argo["predicted"].min()); mx=max(argo["observed"].max(),argo["predicted"].max()); fig.add_trace(go.Scatter(x=[mn,mx],y=[mn,mx],mode="lines",name="1:1")); fig.update_layout(height=500,xaxis_title="Reference",yaxis_title="Prediction"); st.plotly_chart(fig,use_container_width=True)
     st.warning("Synthetic validation only. Replace with independent INCOIS LAS Gridded ARGO data for SIH evaluation.")
 
