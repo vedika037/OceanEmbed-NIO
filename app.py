@@ -18,35 +18,33 @@ st.set_page_config(page_title="OceanEmbed | NIO", page_icon="🌊", layout="wide
 # --------------------
 st.markdown("""
 <style>
-:root{--navy:#12344a;--blue:#1976a8;--cyan:#2b9fc3;--ink:#17232d;--muted:#667784;--line:#d7e1e7;--bg:#f4f7f9;--panel:#ffffff;--soft:#edf4f7;--green:#2d7d62;--amber:#a56a00;--red:#b54545}
-.stApp{background:var(--bg);color:var(--ink)}
-.block-container{max-width:1500px;padding-top:1.1rem;padding-bottom:3rem}
-[data-testid="stHeader"]{background:#ffffff;border-bottom:1px solid var(--line)}
-[data-testid="stSidebar"]{background:#ffffff;border-right:1px solid var(--line)}
+/* Minimal scientific dark theme: Streamlit handles the controls and widgets. */
+:root{--accent:#39a9d6;--text:#e6edf3;--muted:#9aa9b5;--line:#263746;--panel:#101c28;--panel2:#0b1620;--green:#55c89a;--amber:#e5ad54;--red:#e06c75}
+.stApp{background:#08131d;color:var(--text)}
+.block-container{max-width:1500px;padding-top:1.2rem;padding-bottom:3rem}
+[data-testid="stHeader"]{background:#08131d}
+[data-testid="stSidebar"]{background:#0b1722;border-right:1px solid var(--line)}
 [data-testid="stSidebar"] .block-container{padding-top:1rem}
-h1,h2,h3,h4{color:var(--navy)!important;letter-spacing:-.02em}
-p,li{color:#3f505b}
-label,[data-testid="stWidgetLabel"] p{color:#314550!important;font-weight:600!important}
+h1,h2,h3,h4{color:#e8f0f5!important;letter-spacing:-.015em}
+p,li{color:#b8c5ce}
+label,[data-testid="stWidgetLabel"] p{color:#c9d4dc!important;font-weight:600!important}
 .small-note{font-size:.78rem;color:var(--muted)}
 .brandline{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:2px 0 12px;margin-bottom:18px}
-.brand{font-size:1.05rem;font-weight:800;letter-spacing:.08em;color:var(--navy)}
-.brand span{color:var(--blue)}
-.status{font-size:.72rem;font-weight:700;color:var(--green);background:#edf8f3;border:1px solid #c6e4d7;border-radius:20px;padding:5px 10px}
-.hero{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);padding:20px 24px;border-radius:6px;margin-bottom:14px}
-.hero-kicker{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:var(--blue);font-weight:800}
+.brand{font-size:1.05rem;font-weight:800;letter-spacing:.08em;color:#e8f0f5}.brand span{color:var(--accent)}
+.status{font-size:.72rem;font-weight:700;color:#8edfc1;background:#10271f;border:1px solid #245340;border-radius:20px;padding:5px 10px}
+.hero{background:#0e1b27;border:1px solid var(--line);border-left:4px solid var(--accent);padding:20px 24px;border-radius:7px;margin-bottom:14px}
+.hero-kicker{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:#65b9dc;font-weight:800}
 .hero h1{font-size:2rem;margin:5px 0 4px}.hero p{margin:0;color:var(--muted);max-width:1000px}
 .meta-strip{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:18px}
-.meta-cell{background:#fff;padding:10px 13px}.meta-label{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:#778791}.meta-value{font-weight:750;color:var(--navy);margin-top:2px}
-.section-title{margin:20px 0 8px;font-size:1rem;font-weight:800;color:var(--navy);border-bottom:2px solid #dce7ed;padding-bottom:6px}
-.info-box{background:#f8fbfc;border:1px solid var(--line);border-radius:6px;padding:11px 13px;color:#4c5e69;font-size:.8rem}
-.warning{background:#fff7e8;border:1px solid #ecd5a4;border-left:4px solid #c58a20;border-radius:5px;padding:10px 12px;color:#765315;font-size:.8rem}
-.good{background:#eff8f4;border:1px solid #c8e3d7;border-left:4px solid var(--green);border-radius:5px;padding:10px 12px;color:#2e5f4d;font-size:.8rem}
-.stButton>button,.stDownloadButton>button{border-radius:5px!important;border:1px solid #b9ccd7!important;background:#fff!important;color:var(--navy)!important;font-weight:700!important}
-.stButton>button:hover,.stDownloadButton>button:hover{border-color:var(--blue)!important;color:var(--blue)!important}
+.meta-cell{background:#0e1b27;padding:10px 13px}.meta-label{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:#7f919e}.meta-value{font-weight:750;color:#e4edf2;margin-top:2px}
+.section-title{margin:20px 0 8px;font-size:1rem;font-weight:800;color:#dce7ed;border-bottom:1px solid var(--line);padding-bottom:6px}
+.info-box{background:#0e1b27;border:1px solid var(--line);border-radius:6px;padding:11px 13px;color:#aebdc7;font-size:.8rem}
+.warning{background:#2a2113;border:1px solid #5d4824;border-left:4px solid var(--amber);border-radius:5px;padding:10px 12px;color:#e6c88f;font-size:.8rem}
+.good{background:#10251f;border:1px solid #275341;border-left:4px solid var(--green);border-radius:5px;padding:10px 12px;color:#a8dec9;font-size:.8rem}
 [data-testid="stDataFrame"]{border:1px solid var(--line);border-radius:5px}
-.stTabs [data-baseweb="tab-list"]{gap:0;border-bottom:1px solid var(--line);background:#fff}
-.stTabs [data-baseweb="tab"]{color:#5b6c76;font-weight:700;padding:9px 15px;border-radius:0}
-.stTabs [aria-selected="true"]{color:var(--blue)!important;border-bottom:3px solid var(--blue);background:#fff}
+.stTabs [data-baseweb="tab-list"]{gap:0;border-bottom:1px solid var(--line);background:transparent}
+.stTabs [data-baseweb="tab"]{color:#93a5b1;font-weight:700;padding:9px 15px;border-radius:0}
+.stTabs [aria-selected="true"]{color:#62b9dd!important;border-bottom:2px solid var(--accent);background:transparent}
 hr{border-color:var(--line)!important}
 footer{visibility:hidden}
 </style>
@@ -64,9 +62,17 @@ PRESETS={
 }
 
 def plot_base(fig,height=430):
-    fig.update_layout(template="plotly_white",paper_bgcolor="white",plot_bgcolor="white",height=height,margin=dict(l=50,r=25,t=35,b=45),font=dict(color="#263943"),legend=dict(bgcolor="rgba(255,255,255,.8)"))
-    fig.update_xaxes(gridcolor="#e5edf1",zerolinecolor="#c9d7df")
-    fig.update_yaxes(gridcolor="#e5edf1",zerolinecolor="#c9d7df")
+    fig.update_layout(
+        template="plotly_dark",
+        paper_bgcolor="#0b1620",
+        plot_bgcolor="#0b1620",
+        height=height,
+        margin=dict(l=50,r=25,t=35,b=45),
+        font=dict(color="#cbd7df"),
+        legend=dict(bgcolor="rgba(11,22,32,.75)")
+    )
+    fig.update_xaxes(gridcolor="#223442",zerolinecolor="#405463",linecolor="#405463")
+    fig.update_yaxes(gridcolor="#223442",zerolinecolor="#405463",linecolor="#405463")
     return fig
 
 def metric_row(items):
@@ -220,7 +226,7 @@ with T[2]:
     colors="RdBu_r" if field_mode in ["Anomaly","Gradient proxy"] else "Turbo" if field_mode=="Temperature" else "Viridis"
     mf=go.Figure(go.Heatmap(x=lon,y=lat,z=field,colorscale=colors,colorbar=dict(title=field_mode),hovertemplate="Lon %{x:.2f}°E<br>Lat %{y:.2f}°N<br>%{z:.2f}<extra></extra>"))
     if show_map_markers:
-        mf.add_trace(go.Scatter(x=[REGIONS[r]["lon"] for r in REGIONS],y=[REGIONS[r]["lat"] for r in REGIONS],text=[region_label(r) for r in REGIONS],mode="markers+text",textposition="top center",marker=dict(size=7,color="#173c52"),name="Regions"))
+        mf.add_trace(go.Scatter(x=[REGIONS[r]["lon"] for r in REGIONS],y=[REGIONS[r]["lat"] for r in REGIONS],text=[region_label(r) for r in REGIONS],mode="markers+text",textposition="top center",marker=dict(size=7,color="#d6e8f0",line=dict(color="#08131d",width=1)),name="Regions"))
     mf.update_xaxes(title="Longitude (°E)");mf.update_yaxes(title="Latitude (°N)");plot_base(mf,650);st.plotly_chart(mf,use_container_width=True)
     metric_row([("Depth",f"{map_depth} m","Selected vertical layer"),("Spatial mean",f"{np.mean(field):.2f}","Mean of displayed field"),("Spatial spread",f"{np.std(field):.2f}","Standard deviation of displayed field")])
     status_box("Spatial values are generated by the prototype emulator. The production system should render the trained 0.25° North Indian Ocean field.","warning")
@@ -249,7 +255,7 @@ with T[4]:
         latent=np.array([np.mean(profile),np.std(profile),thermocline,ohcc/100,mean_unc,physics["score"],mixing_index,stratification])
         labels=["Mean T","T spread","Thermocline","OHC","Uncertainty","Physics","Mixing","Stratification"]
         lo,hi=latent.min(),latent.max();norm=np.zeros_like(latent) if hi==lo else (latent-lo)/(hi-lo)
-        radar=go.Figure(go.Scatterpolar(r=norm,theta=labels,fill="toself",line=dict(color="#1976a8",width=2),fillcolor="rgba(25,118,168,.12)"));radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0,1],gridcolor="#dce7ec"),bgcolor="white"));plot_base(radar,430);st.plotly_chart(radar,use_container_width=True)
+        radar=go.Figure(go.Scatterpolar(r=norm,theta=labels,fill="toself",line=dict(color="#1976a8",width=2),fillcolor="rgba(25,118,168,.12)"));radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0,1],gridcolor="#2a3e4d"),bgcolor="#0b1620"));plot_base(radar,430);st.plotly_chart(radar,use_container_width=True)
     st.markdown('<div class="section-title">Vertical diagnostics</div>',unsafe_allow_html=True)
     af=go.Figure(go.Heatmap(z=np.array([np.abs(gradient)*.65+unc/np.max(unc)*.35]),x=DEPTHS,y=["diagnostic weight"],colorscale="Blues",colorbar=dict(title="relative"),hovertemplate="Depth %{x:.0f} m<br>Weight %{z:.2f}<extra></extra>"));af.update_xaxes(title="Depth (m)");plot_base(af,240);st.plotly_chart(af,use_container_width=True)
     metric_row([("Physics score",f"{physics['score']:.1f}/100","Prototype physics diagnostic"),("Mixing index",f"{mixing_index:.0f}/100","Wind/current proxy"),("Stratification",f"{stratification:.0f}/100","Vertical-gradient proxy"),("Attention state",risk,"Prototype operational state")])
