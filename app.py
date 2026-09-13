@@ -19,32 +19,35 @@ st.set_page_config(page_title="OceanEmbed | NIO", page_icon="🌊", layout="wide
 st.markdown("""
 <style>
 /* Minimal scientific dark theme: Streamlit handles the controls and widgets. */
-:root{--accent:#39a9d6;--text:#e6edf3;--muted:#9aa9b5;--line:#263746;--panel:#101c28;--panel2:#0b1620;--green:#55c89a;--amber:#e5ad54;--red:#e06c75}
-.stApp{background:#08131d;color:var(--text)}
+:root{--accent:#66d9ff;--text:#f3f8fc;--muted:#b7c9d6;--line:#28455a;--panel:#102131;--panel2:#0b1927;--green:#7ee2c3;--amber:#ffd166;--red:#ff8fab;--lav:#a9b8ff}
+.stApp{background:#07111c;color:var(--text)}
 .block-container{max-width:1500px;padding-top:1.2rem;padding-bottom:3rem}
-[data-testid="stHeader"]{background:#08131d}
-[data-testid="stSidebar"]{background:#0b1722;border-right:1px solid var(--line)}
+[data-testid="stHeader"]{background:#07111c}
+[data-testid="stSidebar"]{background:#0b1927;border-right:1px solid var(--line)}
 [data-testid="stSidebar"] .block-container{padding-top:1rem}
-h1,h2,h3,h4{color:#e8f0f5!important;letter-spacing:-.015em}
-p,li{color:#b8c5ce}
-label,[data-testid="stWidgetLabel"] p{color:#c9d4dc!important;font-weight:600!important}
+h1,h2,h3,h4{color:#f3f8fc!important;letter-spacing:-.01em}
+p,li{color:#c3d3de}
+label,[data-testid="stWidgetLabel"] p{color:#d8e7f0!important;font-weight:600!important}
 .small-note{font-size:.78rem;color:var(--muted)}
 .brandline{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:2px 0 12px;margin-bottom:18px}
-.brand{font-size:1.05rem;font-weight:800;letter-spacing:.08em;color:#e8f0f5}.brand span{color:var(--accent)}
+.brand{font-size:1.05rem;font-weight:800;letter-spacing:.08em;color:#f3f8fc}.brand span{color:var(--accent)}
 .status{font-size:.72rem;font-weight:700;color:#8edfc1;background:#10271f;border:1px solid #245340;border-radius:20px;padding:5px 10px}
-.hero{background:#0e1b27;border:1px solid var(--line);border-left:4px solid var(--accent);padding:20px 24px;border-radius:7px;margin-bottom:14px}
-.hero-kicker{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:#65b9dc;font-weight:800}
-.hero h1{font-size:2rem;margin:5px 0 4px}.hero p{margin:0;color:var(--muted);max-width:1000px}
+.hero{background:linear-gradient(135deg,#102131 0%,#12304a 65%,#143b54 100%);border:1px solid var(--line);border-left:4px solid var(--accent);padding:20px 24px;border-radius:7px;margin-bottom:14px}
+.hero-kicker{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:#8fe4ff;font-weight:800}
+.hero h1{font-size:2rem;margin:5px 0 4px}.hero p{margin:0;color:#c5d5df;max-width:1000px}
 .meta-strip{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:18px}
-.meta-cell{background:#0e1b27;padding:10px 13px}.meta-label{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:#7f919e}.meta-value{font-weight:750;color:#e4edf2;margin-top:2px}
-.section-title{margin:20px 0 8px;font-size:1rem;font-weight:800;color:#dce7ed;border-bottom:1px solid var(--line);padding-bottom:6px}
-.info-box{background:#0e1b27;border:1px solid var(--line);border-radius:6px;padding:11px 13px;color:#aebdc7;font-size:.8rem}
-.warning{background:#2a2113;border:1px solid #5d4824;border-left:4px solid var(--amber);border-radius:5px;padding:10px 12px;color:#e6c88f;font-size:.8rem}
-.good{background:#10251f;border:1px solid #275341;border-left:4px solid var(--green);border-radius:5px;padding:10px 12px;color:#a8dec9;font-size:.8rem}
+.meta-cell{background:#102131;padding:10px 13px}.meta-label{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:#8fb1c5}.meta-value{font-weight:750;color:#f0f7fb;margin-top:2px}
+.section-title{margin:20px 0 8px;font-size:1rem;font-weight:800;color:#e6f2f8;border-bottom:1px solid var(--line);padding-bottom:6px}
+.info-box{background:#102131;border:1px solid var(--line);border-radius:6px;padding:11px 13px;color:#aebdc7;font-size:.8rem}
+.warning{background:#332b18;border:1px solid #69572b;border-left:4px solid var(--amber);border-radius:5px;padding:10px 12px;color:#ffe6a3;font-size:.8rem}
+.good{background:#12342b;border:1px solid #2d6657;border-left:4px solid var(--green);border-radius:5px;padding:10px 12px;color:#b7f2df;font-size:.8rem}
 [data-testid="stDataFrame"]{border:1px solid var(--line);border-radius:5px}
 .stTabs [data-baseweb="tab-list"]{gap:0;border-bottom:1px solid var(--line);background:transparent}
-.stTabs [data-baseweb="tab"]{color:#93a5b1;font-weight:700;padding:9px 15px;border-radius:0}
-.stTabs [aria-selected="true"]{color:#62b9dd!important;border-bottom:2px solid var(--accent);background:transparent}
+.stTabs [data-baseweb="tab"]{color:#a9bdcb;font-weight:700;padding:9px 15px;border-radius:0}
+.stTabs [aria-selected="true"]{color:#66d9ff!important;border-bottom:2px solid var(--accent);background:transparent}
+[data-testid="stMetric"]{background:#102131;border:1px solid #28455a;padding:10px 12px;border-radius:7px}
+[data-testid="stMetricLabel"]{color:#a9c2d1!important}
+[data-testid="stMetricValue"]{color:#f3f8fc!important}
 hr{border-color:var(--line)!important}
 footer{visibility:hidden}
 </style>
@@ -64,15 +67,15 @@ PRESETS={
 def plot_base(fig,height=430):
     fig.update_layout(
         template="plotly_dark",
-        paper_bgcolor="#0b1620",
-        plot_bgcolor="#0b1620",
+        paper_bgcolor="#102131",
+        plot_bgcolor="#0b1927",
         height=height,
         margin=dict(l=50,r=25,t=35,b=45),
-        font=dict(color="#cbd7df"),
-        legend=dict(bgcolor="rgba(11,22,32,.75)")
+        font=dict(color="#dcebf3"),
+        legend=dict(bgcolor="rgba(16,33,49,.88)",bordercolor="#28455a",borderwidth=1)
     )
-    fig.update_xaxes(gridcolor="#223442",zerolinecolor="#405463",linecolor="#405463")
-    fig.update_yaxes(gridcolor="#223442",zerolinecolor="#405463",linecolor="#405463")
+    fig.update_xaxes(gridcolor="#294457",zerolinecolor="#5a7181",linecolor="#5a7181")
+    fig.update_yaxes(gridcolor="#294457",zerolinecolor="#5a7181",linecolor="#5a7181")
     return fig
 
 def metric_row(items):
@@ -169,11 +172,11 @@ with T[0]:
     with left:
         st.markdown('<div class="section-title">Reconstructed vertical temperature</div>',unsafe_allow_html=True)
         fig=go.Figure()
-        fig.add_trace(go.Scatter(x=profile,y=DEPTHS,mode="lines+markers",name="OceanEmbed",line=dict(color="#1976a8",width=3),marker=dict(size=6)))
+        fig.add_trace(go.Scatter(x=profile,y=DEPTHS,mode="lines+markers",name="OceanEmbed",line=dict(color="#66d9ff",width=3),marker=dict(size=6)))
         if show_unc:
             fig.add_trace(go.Scatter(x=profile+unc,y=DEPTHS,line=dict(width=0),showlegend=False,hoverinfo="skip"))
-            fig.add_trace(go.Scatter(x=profile-unc,y=DEPTHS,fill="tonexty",fillcolor="rgba(25,118,168,.12)",line=dict(width=0),name="Uncertainty"))
-        fig.add_hline(y=thermocline,line_dash="dot",line_color="#c58a20",annotation_text=f"Thermocline {thermocline:.0f} m")
+            fig.add_trace(go.Scatter(x=profile-unc,y=DEPTHS,fill="tonexty",fillcolor="rgba(102,217,255,.16)",line=dict(width=0),name="Uncertainty"))
+        fig.add_hline(y=thermocline,line_dash="dot",line_color="#ffd166",annotation_text=f"Thermocline {thermocline:.0f} m")
         fig.update_yaxes(autorange="reversed",title="Depth (m)")
         fig.update_xaxes(title="Temperature (°C)")
         plot_base(fig,500);st.plotly_chart(fig,use_container_width=True)
@@ -197,16 +200,16 @@ with T[1]:
     p1,p2=st.columns([1.5,.85],gap="large")
     with p1:
         fig=go.Figure()
-        fig.add_trace(go.Scatter(x=profile,y=DEPTHS,mode="lines+markers",name="Reconstructed",line=dict(color="#1976a8",width=3)))
+        fig.add_trace(go.Scatter(x=profile,y=DEPTHS,mode="lines+markers",name="Reconstructed",line=dict(color="#66d9ff",width=3)))
         if show_unc:
             fig.add_trace(go.Scatter(x=profile+unc,y=DEPTHS,line=dict(width=0),showlegend=False,hoverinfo="skip"))
-            fig.add_trace(go.Scatter(x=profile-unc,y=DEPTHS,fill="tonexty",fillcolor="rgba(25,118,168,.12)",line=dict(width=0),name="± uncertainty"))
-        fig.add_trace(go.Scatter(x=[temp],y=[selected_depth],mode="markers",marker=dict(size=11,color="#c58a20"),name="Selected depth"))
-        fig.add_hline(y=thermocline,line_dash="dot",line_color="#c58a20")
+            fig.add_trace(go.Scatter(x=profile-unc,y=DEPTHS,fill="tonexty",fillcolor="rgba(102,217,255,.16)",line=dict(width=0),name="± uncertainty"))
+        fig.add_trace(go.Scatter(x=[temp],y=[selected_depth],mode="markers",marker=dict(size=11,color="#ffd166"),name="Selected depth"))
+        fig.add_hline(y=thermocline,line_dash="dot",line_color="#ffd166")
         fig.update_yaxes(autorange="reversed",title="Depth (m)");fig.update_xaxes(title="Temperature (°C)")
         plot_base(fig,600);st.plotly_chart(fig,use_container_width=True)
     with p2:
-        gf=go.Figure(go.Bar(x=gradient,y=DEPTHS,orientation="h",marker_color="#4a91b8"))
+        gf=go.Figure(go.Bar(x=gradient,y=DEPTHS,orientation="h",marker_color="#7ee2c3"))
         gf.add_vline(x=0,line_dash="dot",line_color="#9aaab4");gf.update_yaxes(autorange="reversed",title="Depth (m)");gf.update_xaxes(title="dT/dz (°C/m)")
         plot_base(gf,410);st.plotly_chart(gf,use_container_width=True)
         st.dataframe(pd.DataFrame({"Depth (m)":DEPTHS,"Temperature (°C)":np.round(profile,3),"Uncertainty (°C)":np.round(unc,3),"dT/dz":np.round(gradient,5)}),use_container_width=True,hide_index=True,height=250)
@@ -238,24 +241,24 @@ with T[3]:
     metric_row([("RMSE",f"{argo['rmse']:.2f} °C","Synthetic reference"),("MAE",f"{argo['mae']:.2f} °C","Synthetic reference"),("R²",f"{argo['r2']:.4f}","Synthetic reference"),("Bias",f"{argo['bias']:+.2f} °C","Mean signed error")])
     v1,v2=st.columns([1.2,1],gap="large")
     with v1:
-        vf=go.Figure(go.Scatter(x=argo["observed"],y=argo["predicted"],mode="markers",marker=dict(size=9,color="#1976a8"),customdata=DEPTHS,hovertemplate="%{customdata:.0f} m<br>Reference %{x:.2f} °C<br>Prediction %{y:.2f} °C<extra></extra>"))
+        vf=go.Figure(go.Scatter(x=argo["observed"],y=argo["predicted"],mode="markers",marker=dict(size=9,color="#66d9ff"),customdata=DEPTHS,hovertemplate="%{customdata:.0f} m<br>Reference %{x:.2f} °C<br>Prediction %{y:.2f} °C<extra></extra>"))
         mn=min(argo["observed"].min(),argo["predicted"].min());mx=max(argo["observed"].max(),argo["predicted"].max())
-        vf.add_trace(go.Scatter(x=[mn,mx],y=[mn,mx],mode="lines",line=dict(color="#c58a20",dash="dash"),name="1:1"));vf.update_xaxes(title="Reference temperature (°C)");vf.update_yaxes(title="Predicted temperature (°C)");plot_base(vf,470);st.plotly_chart(vf,use_container_width=True)
+        vf.add_trace(go.Scatter(x=[mn,mx],y=[mn,mx],mode="lines",line=dict(color="#ffd166",dash="dash"),name="1:1"));vf.update_xaxes(title="Reference temperature (°C)");vf.update_yaxes(title="Predicted temperature (°C)");plot_base(vf,470);st.plotly_chart(vf,use_container_width=True)
     with v2:
         residual=argo["predicted"]-argo["observed"]
-        rf=go.Figure(go.Bar(x=DEPTHS,y=residual,marker_color="#4a91b8"));rf.add_hline(y=0,line_dash="dot");rf.update_xaxes(title="Depth (m)");rf.update_yaxes(title="Residual (°C)");plot_base(rf,470);st.plotly_chart(rf,use_container_width=True)
+        rf=go.Figure(go.Bar(x=DEPTHS,y=residual,marker_color="#7ee2c3"));rf.add_hline(y=0,line_dash="dot");rf.update_xaxes(title="Depth (m)");rf.update_yaxes(title="Residual (°C)");plot_base(rf,470);st.plotly_chart(rf,use_container_width=True)
 
 # Diagnostics
 with T[4]:
     a,b=st.columns([1.25,.9],gap="large")
     with a:
         imp=importance.sort_values("Importance")
-        fig=go.Figure(go.Bar(x=imp.Importance,y=imp.Feature,orientation="h",marker_color="#1976a8"));fig.update_xaxes(title="Relative contribution");plot_base(fig,430);st.plotly_chart(fig,use_container_width=True)
+        fig=go.Figure(go.Bar(x=imp.Importance,y=imp.Feature,orientation="h",marker_color="#66d9ff"));fig.update_xaxes(title="Relative contribution");plot_base(fig,430);st.plotly_chart(fig,use_container_width=True)
     with b:
         latent=np.array([np.mean(profile),np.std(profile),thermocline,ohcc/100,mean_unc,physics["score"],mixing_index,stratification])
         labels=["Mean T","T spread","Thermocline","OHC","Uncertainty","Physics","Mixing","Stratification"]
         lo,hi=latent.min(),latent.max();norm=np.zeros_like(latent) if hi==lo else (latent-lo)/(hi-lo)
-        radar=go.Figure(go.Scatterpolar(r=norm,theta=labels,fill="toself",line=dict(color="#1976a8",width=2),fillcolor="rgba(25,118,168,.12)"));radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0,1],gridcolor="#2a3e4d"),bgcolor="#0b1620"));plot_base(radar,430);st.plotly_chart(radar,use_container_width=True)
+        radar=go.Figure(go.Scatterpolar(r=norm,theta=labels,fill="toself",line=dict(color="#66d9ff",width=2),fillcolor="rgba(102,217,255,.16)"));radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0,1],gridcolor="#2a3e4d"),bgcolor="#0b1620"));plot_base(radar,430);st.plotly_chart(radar,use_container_width=True)
     st.markdown('<div class="section-title">Vertical diagnostics</div>',unsafe_allow_html=True)
     af=go.Figure(go.Heatmap(z=np.array([np.abs(gradient)*.65+unc/np.max(unc)*.35]),x=DEPTHS,y=["diagnostic weight"],colorscale="Blues",colorbar=dict(title="relative"),hovertemplate="Depth %{x:.0f} m<br>Weight %{z:.2f}<extra></extra>"));af.update_xaxes(title="Depth (m)");plot_base(af,240);st.plotly_chart(af,use_container_width=True)
     metric_row([("Physics score",f"{physics['score']:.1f}/100","Prototype physics diagnostic"),("Mixing index",f"{mixing_index:.0f}/100","Wind/current proxy"),("Stratification",f"{stratification:.0f}/100","Vertical-gradient proxy"),("Attention state",risk,"Prototype operational state")])
@@ -314,4 +317,4 @@ with T[6]:
     with st.expander("Scientific scope and limitations"):
         st.write("This interface demonstrates the intended OceanEmbed workflow. Numerical outputs currently come from an emulator and are not GLORYS-trained predictions. The ARGO validation panel is synthetic. Final scientific evaluation should use the specified GLORYS training target and independent INCOIS/Gridded ARGO observations.")
 
-st.markdown('<div style="text-align:center;color:#7b8a93;font-size:.72rem;margin-top:30px">OceanEmbed · North Indian Ocean · SIH26066 · Prototype</div>',unsafe_allow_html=True)
+st.markdown('<div style="text-align:center;color:#7b8a93;font-size:.72rem;margin-top:30px">OceanEmbed · North Indian Ocean ·</div>',unsafe_allow_html=True)

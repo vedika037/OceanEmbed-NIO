@@ -1,16 +1,24 @@
 [theme]
 base = "dark"
-primaryColor = "#39a9d6"
-backgroundColor = "#08131d"
-secondaryBackgroundColor = "#0e1b27"
-textColor = "#e6edf3"
+primaryColor = "#66d9ff"
+backgroundColor = "#07111c"
+secondaryBackgroundColor = "#102131"
+textColor = "#f3f8fc"
 font = "sans serif"
 baseRadius = "small"
 showWidgetBorder = true
 showSidebarBorder = true
+borderColor = "#28455a"
+dataframeBorderColor = "#28455a"
+dataframeHeaderBackgroundColor = "#17324a"
+chartCategoricalColors = ["#66d9ff", "#7ee2c3", "#a9b8ff", "#ffd166", "#ff9fba", "#8bd3ff", "#c5a3ff", "#8ce99a", "#ffb86b", "#b8c9d9"]
+chartSequentialColors = ["#08304d", "#0b4d73", "#126e96", "#218fba", "#3eafd0", "#66d9ff", "#8fe4ff", "#b5edff", "#d8f6ff", "#eefbff"]
 
 [theme.sidebar]
-primaryColor = "#39a9d6"
-backgroundColor = "#0b1722"
-secondaryBackgroundColor = "#101f2c"
-textColor = "#d9e4eb"
+primaryColor = "#66d9ff"
+backgroundColor = "#0b1927"
+secondaryBackgroundColor = "#12283a"
+textColor = "#edf7fc"
+borderColor = "#28455a"
+dataframeBorderColor = "#28455a"
+dataframeHeaderBackgroundColor = "#17324a"
