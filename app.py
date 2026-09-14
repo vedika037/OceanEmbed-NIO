@@ -122,7 +122,7 @@ if st.sidebar.button("Reset surface inputs",use_container_width=True):
     for k,v in DEFAULTS.items(): st.session_state[k]=v
     st.rerun()
 st.sidebar.divider()
-st.sidebar.caption("Prototype")
+st.sidebar.caption("")
 
 # --------------------
 # Reconstruction

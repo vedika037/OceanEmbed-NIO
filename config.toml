@@ -2,7 +2,7 @@
 base = "dark"
 primaryColor = "#66d9ff"
 backgroundColor = "#97bbe1"
-secondaryBackgroundColor = "#102131"
+secondaryBackgroundColor = "#7eb4e7"
 textColor = "#f3f8fc"
 font = "sans serif"
 baseRadius = "small"
@@ -16,8 +16,8 @@ chartSequentialColors = ["#08304d", "#0b4d73", "#126e96", "#218fba", "#3eafd0", 
 
 [theme.sidebar]
 primaryColor = "#66d9ff"
-backgroundColor = "#0b1927"
-secondaryBackgroundColor = "#12283a"
+backgroundColor = "#2190ff"
+secondaryBackgroundColor = "#a5d4fa"
 textColor = "#edf7fc"
 borderColor = "#28455a"
 dataframeBorderColor = "#28455a"
