@@ -23,8 +23,49 @@ st.markdown("""
 .stApp{background:#8faebe;color:var(--text)}
 .block-container{max-width:1500px;padding-top:1.2rem;padding-bottom:3rem}
 [data-testid="stHeader"]{background:#8faebe}
-[data-testid="stSidebar"]{background:#23465e;border-right:1px solid var(--line)}
+
+[data-testid="stSidebar"]{
+    background:#142f45;
+    border-right:1px solid #263b4a
+}
+
 [data-testid="stSidebar"] .block-container{padding-top:1rem}
+
+[data-testid="stSidebar"] *{
+    color:#ffffff;
+}
+
+[data-testid="stSidebar"] label{
+    color:#ffffff!important;
+}
+
+[data-testid="stSidebar"] p{
+    color:#ffffff!important;
+}
+
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p{
+    color:#ffffff!important;
+}
+
+[data-testid="stSidebar"] input{
+    color:#172532!important;
+    background:#dce8ef!important;
+}
+
+[data-testid="stSidebar"] textarea{
+    color:#172532!important;
+    background:#dce8ef!important;
+}
+
+[data-testid="stSidebar"] [role="option"]{
+    color:#172532!important;
+    background:#dce8ef!important;
+}
+
+[data-testid="stSidebar"] button{
+    color:#172532!important;
+}
+
 h1,h2,h3,h4{color:#172532!important;letter-spacing:-.01em}
 p,li{color:#304958}
 label,[data-testid="stWidgetLabel"] p{color:#243d4c!important;font-weight:600!important}
