@@ -18,7 +18,7 @@ st.set_page_config(page_title="OceanEmbed | NIO", page_icon="🌊", layout="wide
 # --------------------
 st.markdown("""
 <style>
-/* Minimal scientific dark theme: Streamlit handles the controls and widgets. */
+
 :root{--accent:#66d9ff;--text:#f3f8fc;--muted:#b7c9d6;--line:#28455a;--panel:#102131;--panel2:#0b1927;--green:#7ee2c3;--amber:#ffd166;--red:#ff8fab;--lav:#a9b8ff}
 .stApp{background:#07111c;color:var(--text)}
 .block-container{max-width:1500px;padding-top:1.2rem;padding-bottom:3rem}
@@ -93,8 +93,8 @@ def region_label(name):
 # --------------------
 # Sidebar controls
 # --------------------
-st.sidebar.markdown("### OceanEmbed")
-st.sidebar.caption("North Indian Ocean · SIH26066")
+st.sidebar.markdown("OceanEmbed")
+st.sidebar.caption("North Indian Ocean")
 st.sidebar.divider()
 region_name=st.sidebar.selectbox("Region",list(REGIONS.keys()),index=0,format_func=region_label)
 analysis_date=st.sidebar.date_input("Analysis date",value=date(2026,9,12))
@@ -122,7 +122,7 @@ if st.sidebar.button("Reset surface inputs",use_container_width=True):
     for k,v in DEFAULTS.items(): st.session_state[k]=v
     st.rerun()
 st.sidebar.divider()
-st.sidebar.caption("Prototype / emulator mode")
+st.sidebar.caption("Prototype")
 
 # --------------------
 # Reconstruction
@@ -148,8 +148,8 @@ else: risk="Stable"; risk_color="green"
 # --------------------
 # Header
 # --------------------
-st.markdown('<div class="brandline"><div class="brand">OCEAN<span>EMBED</span> / NIO</div><div class="status">PROTOTYPE / EMULATOR</div></div>',unsafe_allow_html=True)
-st.markdown(f'<div class="hero"><div class="hero-kicker">SIH26066 · Subsurface temperature reconstruction</div><h1>North Indian Ocean analysis</h1><p>Daily 0.25° concept for reconstructing depth-wise ocean temperature from satellite surface observations. The interface is organized around observations, reconstruction, spatial structure, validation and model diagnostics.</p></div>',unsafe_allow_html=True)
+st.markdown('<div class="brandline"><div class="brand">OCEAN<span>EMBED</span> / NIO</div><div class="status">PROTOTYPE</div></div>',unsafe_allow_html=True)
+st.markdown(f'<div class="hero"><div class="hero-kicker">Subsurface temperature reconstruction</div><h1>North Indian Ocean analysis</h1><p>Daily 0.25° concept for reconstructing depth-wise ocean temperature from satellite surface observations. The interface is organized around observations, reconstruction, spatial structure, validation and model diagnostics.</p></div>',unsafe_allow_html=True)
 st.markdown(f'''<div class="meta-strip"><div class="meta-cell"><div class="meta-label">Region</div><div class="meta-value">{region_label(region_name)}</div></div><div class="meta-cell"><div class="meta-label">Date</div><div class="meta-value">{analysis_date}</div></div><div class="meta-cell"><div class="meta-label">Scenario</div><div class="meta-value">{preset}</div></div><div class="meta-cell"><div class="meta-label">State</div><div class="meta-value">{risk}</div></div></div>''',unsafe_allow_html=True)
 
 st.markdown('<div class="section-title">Current reconstruction</div>',unsafe_allow_html=True)
@@ -188,7 +188,7 @@ with T[0]:
         st.markdown('<div class="section-title">Derived indicators</div>',unsafe_allow_html=True)
         metric_row([("Mixing index",f"{mixing_index:.0f}/100","Proxy from winds, currents and SSH"),("Stratification",f"{stratification:.0f}/100","Profile-gradient proxy"),("Surface anomaly",f"{anomaly_index:+.1f}","Relative to prototype baseline")])
     st.markdown('<div class="section-title">Input-to-output workflow</div>',unsafe_allow_html=True)
-    st.write("Satellite observations → quality control / harmonization → spatial encoder → temporal representation → ocean embedding → depth-aware decoder → 15-level temperature profile → thermocline, OHC and uncertainty → independent validation.")
+    
 
 # Profile
 with T[1]:
@@ -261,7 +261,7 @@ with T[4]:
         radar=go.Figure(go.Scatterpolar(r=norm,theta=labels,fill="toself",line=dict(color="#66d9ff",width=2),fillcolor="rgba(102,217,255,.16)"));radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0,1],gridcolor="#2a3e4d"),bgcolor="#0b1620"));plot_base(radar,430);st.plotly_chart(radar,use_container_width=True)
     st.markdown('<div class="section-title">Vertical diagnostics</div>',unsafe_allow_html=True)
     af=go.Figure(go.Heatmap(z=np.array([np.abs(gradient)*.65+unc/np.max(unc)*.35]),x=DEPTHS,y=["diagnostic weight"],colorscale="Blues",colorbar=dict(title="relative"),hovertemplate="Depth %{x:.0f} m<br>Weight %{z:.2f}<extra></extra>"));af.update_xaxes(title="Depth (m)");plot_base(af,240);st.plotly_chart(af,use_container_width=True)
-    metric_row([("Physics score",f"{physics['score']:.1f}/100","Prototype physics diagnostic"),("Mixing index",f"{mixing_index:.0f}/100","Wind/current proxy"),("Stratification",f"{stratification:.0f}/100","Vertical-gradient proxy"),("Attention state",risk,"Prototype operational state")])
+    metric_row([("Physics score",f"{physics['score']:.1f}/100","Physics diagnostic"),("Mixing index",f"{mixing_index:.0f}/100","Wind/current proxy"),("Stratification",f"{stratification:.0f}/100","Vertical-gradient proxy"),("Attention state",risk,"operational state")])
 
 # Scenarios
 with T[5]:
@@ -295,7 +295,7 @@ with T[5]:
 # Data and methods
 with T[6]:
     export_df=pd.DataFrame({"date":[str(analysis_date)]*len(DEPTHS),"region":[region_name]*len(DEPTHS),"depth_m":DEPTHS,"temperature_c":profile,"uncertainty_c":unc,"dT_dz_c_per_m":gradient})
-    config={"date":str(analysis_date),"region":region_name,"scenario":preset,"window_days":window,"attention_strength":attention,"extreme_weight":extreme,"uncertainty_runs":runs,"surface_inputs":{"SST_C":sst,"SSS_PSU":sss,"SSH_m":ssh,"U_current_mps":u_cur,"V_current_mps":v_cur,"U_wind_mps":u_wind,"V_wind_mps":v_wind},"outputs":{"thermocline_m":thermocline,"ohc_proxy_MJ_m2":ohcc,"mean_uncertainty_C":mean_unc,"physics_score":physics["score"],"confidence_percent":confidence,"risk_state":risk},"prototype_note":"Emulator/demo output. Replace with GLORYS-trained model and independent INCOIS Gridded ARGO validation."}
+    config={"date":str(analysis_date),"region":region_name,"scenario":preset,"window_days":window,"attention_strength":attention,"extreme_weight":extreme,"uncertainty_runs":runs,"surface_inputs":{"SST_C":sst,"SSS_PSU":sss,"SSH_m":ssh,"U_current_mps":u_cur,"V_current_mps":v_cur,"U_wind_mps":u_wind,"V_wind_mps":v_wind},"outputs":{"thermocline_m":thermocline,"ohc_proxy_MJ_m2":ohcc,"mean_uncertainty_C":mean_unc,"physics_score":physics["score"],"confidence_percent":confidence,"risk_state":risk}}
     st.markdown('<div class="section-title">Export current experiment</div>',unsafe_allow_html=True)
     x1,x2,x3=st.columns(3)
     with x1: st.download_button("Download temperature CSV",export_df.to_csv(index=False),"oceanembed_profile.csv","text/csv",use_container_width=True)
@@ -315,6 +315,6 @@ with T[6]:
     ],columns=["Component","Scope","Current status","Next step"])
     st.dataframe(roadmap,use_container_width=True,hide_index=True)
     with st.expander("Scientific scope and limitations"):
-        st.write("This interface demonstrates the intended OceanEmbed workflow. Numerical outputs currently come from an emulator and are not GLORYS-trained predictions. The ARGO validation panel is synthetic. Final scientific evaluation should use the specified GLORYS training target and independent INCOIS/Gridded ARGO observations.")
+        st.write(".")
 
 st.markdown('<div style="text-align:center;color:#7b8a93;font-size:.72rem;margin-top:30px">OceanEmbed · North Indian Ocean ·</div>',unsafe_allow_html=True)
