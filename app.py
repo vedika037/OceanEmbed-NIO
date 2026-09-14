@@ -20,9 +20,9 @@ st.markdown("""
 <style>
 
 :root{--accent:#238edb;--text:#172532;--muted:#536b7b;--line:#9bb5c7;--panel:#dce8ef;--panel2:#cbdce7;--green:#238b70;--amber:#b47a00;--red:#c94f6b;--lav:#596fc4}
-.stApp{background:#b8cedb;color:var(--text)}
+.stApp{background:#8faebe;color:var(--text)}
 .block-container{max-width:1500px;padding-top:1.2rem;padding-bottom:3rem}
-[data-testid="stHeader"]{background:#b8cedb}
+[data-testid="stHeader"]{background:#8faebe}
 [data-testid="stSidebar"]{background:#8eafc3;border-right:1px solid var(--line)}
 [data-testid="stSidebar"] .block-container{padding-top:1rem}
 h1,h2,h3,h4{color:#172532!important;letter-spacing:-.01em}
