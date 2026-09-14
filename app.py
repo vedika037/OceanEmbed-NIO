@@ -23,7 +23,7 @@ st.markdown("""
 .stApp{background:#8faebe;color:var(--text)}
 .block-container{max-width:1500px;padding-top:1.2rem;padding-bottom:3rem}
 [data-testid="stHeader"]{background:#8faebe}
-[data-testid="stSidebar"]{background:#8eafc3;border-right:1px solid var(--line)}
+[data-testid="stSidebar"]{background:#23465e;border-right:1px solid var(--line)}
 [data-testid="stSidebar"] .block-container{padding-top:1rem}
 h1,h2,h3,h4{color:#172532!important;letter-spacing:-.01em}
 p,li{color:#304958}
